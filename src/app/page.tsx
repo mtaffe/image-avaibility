@@ -21,7 +21,7 @@ const UploadForm = () => {
     formState: { errors },
     setValue,
   } = useForm<FormData>({
-    defaultValues: { file: null, percent: 0 }, // Percentual padrão
+    defaultValues: { file: null, percent: 0 },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -62,32 +62,31 @@ const UploadForm = () => {
       reader.onloadend = () => setPreview(reader.result as string);
       reader.readAsDataURL(file);
 
-      // Registrando o arquivo corretamente
       setValue("file", file, { shouldValidate: true });
     }
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
+    <div className="w-full max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
       <h2 className="text-xl font-semibold mb-4 text-black">Upload File</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
           <div>
-            <label className="block font-medium mb-2 text-black">Select Image:</label>
-            <div
+            <span className="block font-medium mb-2 text-black">Select Image:</span>
+            <label
+              htmlFor="fileInput"
               className="border-2 border-dashed border-gray-300 w-64 h-64 flex items-center justify-center cursor-pointer rounded-md bg-gray-100"
-              onClick={() => document.getElementById("fileInput")?.click()}
             >
               {preview ? (
                 <img src={preview} alt="Selected" className="w-full h-full object-cover rounded-md" />
               ) : (
                 <span className="text-black-500">Click to select image</span>
               )}
-            </div>
+            </label>
             <input
               type="file"
               id="fileInput"
-              className="hidden"
+              className="absolute opacity-0 w-0 h-0"
               accept="image/*"
               onChange={handleFileChange}
             />
@@ -105,12 +104,14 @@ const UploadForm = () => {
           <label className="block font-medium text-black">Percentage:</label>
           <input
             type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
             {...register("percent", {
               required: "Percentage is required",
               min: { value: 1, message: "Minimum value is 1%" },
               max: { value: 100, message: "Maximum value is 100%" },
             })}
-            className="border p-2 w-full color-black rounded-md text-black"
+            className="border p-2 w-full rounded-md text-black"
           />
           {errors.percent && <p className="text-red-500">{String(errors.percent.message)}</p>}
         </div>
