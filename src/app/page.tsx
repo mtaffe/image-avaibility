@@ -39,7 +39,7 @@ const UploadForm = () => {
     formData.append("percent", String(Number(data.percent)));
 
     try {
-      const response = await axios.post("http://localhost:8000/api/image", formData, {
+      const response = await axios.post("http://54.232.230.0/api/image", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
       });
