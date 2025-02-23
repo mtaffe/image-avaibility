@@ -36,7 +36,7 @@ const UploadForm = () => {
 
     const formData = new FormData();
     formData.append("file", data.file);
-    formData.append("percent", data.percent.toString());
+    formData.append("percent", String(Number(data.percent)));
 
     try {
       const response = await axios.post("http://localhost:8000/api/image", formData, {
