@@ -39,7 +39,7 @@ const UploadForm = () => {
     formData.append("percent", String(Number(data.percent)));
 
     try {
-      const response = await axios.post("http://54.232.230.0/api/image", formData, {
+      const response = await axios.post("/api/image", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
       });
@@ -68,11 +68,13 @@ const UploadForm = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-xl font-semibold mb-4 text-black">Upload File</h2>
+      <h2 className="text-xl font-semibold mb-4 text-black">Analise de criativos 
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <div>
-            <span className="block font-medium mb-2 text-black">Select Image:</span>
+            <span className="block font-medium mb-2 text-black">Selecione a peça 
+            :</span>
             <label
               htmlFor="fileInput"
               className="border-2 border-dashed border-gray-300 w-64 h-64 flex items-center justify-center cursor-pointer rounded-md bg-gray-100"
@@ -80,7 +82,7 @@ const UploadForm = () => {
               {preview ? (
                 <img src={preview} alt="Selected" className="w-full h-full object-cover rounded-md" />
               ) : (
-                <span className="text-black-500">Click to select image</span>
+                <span className="text-black-500">Click para selecionar a peça</span>
               )}
             </label>
             <input
@@ -94,14 +96,15 @@ const UploadForm = () => {
           </div>
           {editedImage && (
             <div className="flex flex-col items-center">
-              <p className="font-medium text-black">Edited Image:</p>
+              <p className="font-medium text-black">Imagem Editada:</p>
               <img src={editedImage} alt="Edited" className="w-64 h-64 object-cover rounded-md shadow" />
             </div>
           )}
         </div>
 
         <div>
-          <label className="block font-medium text-black">Percentage:</label>
+          <label className="block font-medium text-black">Informe a média do viability
+          </label>
           <input
             type="number"
             inputMode="numeric"
