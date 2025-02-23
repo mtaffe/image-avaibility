@@ -25,8 +25,6 @@ const UploadForm = () => {
     defaultValues: { file: null, percent: 0 }, // Percentual padrão
   });
 
-  const selectedFile = watch("file");
-
   const onSubmit = async (data: FormData) => {
     if (!data.file) {
       setMessage("No file selected.");
