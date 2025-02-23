@@ -20,7 +20,6 @@ const UploadForm = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
   } = useForm<FormData>({
     defaultValues: { file: null, percent: 0 }, // Percentual padrão
   });
