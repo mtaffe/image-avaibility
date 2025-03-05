@@ -73,7 +73,7 @@ const mockTreinos: Record<string, TreinoDia[]> = {
 export default function TreinoPage() {
   const params = useParams();
   const nome = Array.isArray(params.nome) ? params.nome[0] : params.nome;
-  const treino = mockTreinos[nome] || [];
+  const treino = mockTreinos[nome ?? 'default'] || [];
   const [status, setStatus] = useState<Record<string, boolean>>({});
 
   const toggleExercicio = (diaIndex: number, exIndex: number) => {
