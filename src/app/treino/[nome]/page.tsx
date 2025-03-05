@@ -104,11 +104,11 @@ export default function TreinoPage() {
                 >
 
                 </Image>
-              <CardContent className="flex-1">
+              <CardContent>
                 <p className="font-semibold">{ex.nome}</p>
                 <p className="text-sm text-gray-600">{ex.repeticoes}</p>
               </CardContent>
-              <Button size="sm" onClick={() => toggleExercicio(diaIndex, exIndex)}>
+              <Button onClick={() => toggleExercicio(diaIndex, exIndex)}>
                 {status[`${diaIndex}-${exIndex}`] ? '✓' : 'Fazer'}
               </Button>
             </Card>
